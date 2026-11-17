@@ -4,7 +4,7 @@
 
 **https://paulliang1.github.io/miss-yang-art-school/**
 
-- All seven directions, plus the chooser page, on GitHub Pages. Free, no domain needed,
+- The original handover site (version 00) plus all seven new directions, and the chooser page, on GitHub Pages. Free, no domain needed,
   no bandwidth bill, HTTPS included.
 - Source lives in the public repo `PaulLiang1/miss-yang-art-school`; the content is the folder
   `dist/share/` in this workspace. Pages rebuilds automatically about a minute after a push.

@@ -1,17 +1,18 @@
-# Miss Yang’s Art School — seven website directions
+# Miss Yang’s Art School — eight versions, seven directions
 
-**中文摘要** 同一所学校、同一批学生作品，七个完整的两页网站（第六、第七个带 GSAP 动效，并保留无脚本可读的降级版）。每个文件夹都是可以直接打开、上传的静态站；字体、图片、脚本全部本地，不需要联网、不需要构建。
+**中文摘要** 同一所学校、同一批学生作品，八个完整的两页网站：原版（handover 交付的那一版）加七个新方向（第六、第七个带 GSAP 动效，并保留无脚本可读的降级版）。每个文件夹都是可以直接打开、上传的静态站；字体、图片、脚本全部本地，不需要联网、不需要构建。
 
 ---
 
 ## What this is
 
-The original handover site is one interpretation of this school. This folder holds **seven complete alternative versions** of the same two-page website, built from the same fixed decisions and the same student artwork, each with its own visual language, typography, layout and content angle.
+This folder holds **the original handover site as version 00**, plus **seven complete alternative versions** of the same two-page website, built from the same fixed decisions and the same student artwork, each with its own visual language, typography, layout and content angle.
 
-Nothing was invented: school name, gallery names, course names, fees, ages, student names and ages, contact details, and the absence of an achievements section are identical in all seven. Only the way the school presents itself changes.
+Nothing was invented: school name, gallery names, course names, fees, ages, student names and ages, contact details, and the absence of an achievements section are identical in all eight. Only the way the school presents itself changes.
 
 | Folder | Direction | In one line | Palette | Type |
 | --- | --- | --- | --- | --- |
+| `00-original/` | **The Original 原稿** | The handover build, unchanged: sage growth wall, oak frames, four works on a picture rail, Young Serif. The reference point. | wall `#EEF0EA`, pine `#2B3A2F`, sage `#5F7156`, oak `#CDB48E` | Young Serif + Figtree + Noto Serif SC |
 | `01-atelier/` | **The Monograph** | A printed catalogue about a painter-teacher: chapters, plates, marginalia. | paper `#F3EFE6`, ink `#1D1B18`, stone `#6B6459`, oxblood `#7A2E2A` | Fraunces + Newsreader |
 | `02-prospectus/` | **The Prospectus** | A Swiss school prospectus that leads with the facts every parent checks. | white, ink `#111110`, signal blue `#1533CC`, grey `#EFEEE9` | Archivo (variable) |
 | `03-scrapbook/` | **The Studio Table** | A working studio table: taped-up work, caption slips, a fee sheet. | paper `#F1EEE6`, charcoal `#2C2A26`, pencil blue `#2C5AA0`, marigold `#E0A93B` | Bricolage Grotesque + Figtree |
@@ -20,7 +21,7 @@ Nothing was invented: school name, gallery names, course names, fees, ages, stud
 | `06-line/` | **One Line 一条线** | One cobalt line becomes the curriculum: drawn under the headline, down the gutter, through the four age stages, into the fee table, ending in a loop under the email. The animated one. | paper `#F2F3EF`, ink `#14171A`, graphite `#565E5B`, cobalt `#1E3AE0` | Instrument Serif + Instrument Sans |
 | `07-gallery/` | **A Quiet Room 安静的房间** | The same scroll-driven line as 06, calmed and warmed: softer paper, slate blue, a taped photograph, a studio stamp. The version that tries least hard. | paper `#F4F3EE`, ink `#2E2F2B`, slate `#4F646E`, clay `#A06F60` | Bodoni Moda + Instrument Sans |
 
-`versions/original/` is not included — the untouched handover site is in `miss-yang-handover/site/` at the repository root.
+`00-original/` is a byte-for-byte copy of `miss-yang-handover/site/`; that handover folder is left untouched.
 
 ## Open it
 
@@ -31,7 +32,7 @@ Nothing was invented: school name, gallery names, course names, fees, ages, stud
 
 ## Share a preview
 
-- **Live preview:** https://paulliang1.github.io/miss-yang-art-school/ — all seven directions, free GitHub Pages, rebuilt by pushing `dist/share/` (see `HOSTING.md`).
+- **Live preview:** https://paulliang1.github.io/miss-yang-art-school/ — the original plus all seven directions, free GitHub Pages, rebuilt by pushing `dist/share/` (see `HOSTING.md`).
 - `./preview.sh` serves `versions/` on http://127.0.0.1:8080 (needed for folder links such as `little-artists/`).
 - `./preview.sh --public` also opens a `cloudflared` quick tunnel and prints a `https://*.trycloudflare.com` link anyone can open. It lasts only while the script and this machine keep running, and it is unlisted, not private — share it only with the people reviewing.
 - **Google Sites** cannot host these folders. `sites-pack/` has full-length screenshots, paginated PDFs, phone shots and paste-ready copy, plus `GOOGLE_SITES.md` for the two routes Sites does support.
@@ -73,7 +74,7 @@ Nothing was invented: school name, gallery names, course names, fees, ages, stud
 
 `versions/shots/` holds, for every direction (07 included): `-home.png` (1440 × 960), `-fees.png` (the fees section), `-mobile.png` (real 390 px viewport), `-gallery.png` (Little Artists page); 06 also has `06-line-rail.png` (the pinned stage rail mid-scroll), plus:
 
-- `compare-desktop.png` — the seven home pages at desktop width
+- `compare-desktop.png` — the seven new home pages at desktop width
 - `compare-phone-360.png` — the layouts on a small phone (360 px; five directions)
 - `compare-tablet-834.png` — the layouts on a tablet in portrait (834 px, iPad; five directions)
 - `compare-tablet-1024.png` — the layouts on a tablet in landscape (1024 px; five directions)
