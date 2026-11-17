@@ -1,0 +1,969 @@
+/* ============================================================
+   05-ink — "墨与纸 / Ink & Paper"
+   A bilingual art school page set as rice paper: ink type,
+   three vertical chapter marks (观 / 思 / 创), one red seal.
+   ============================================================ */
+
+:root {
+  --rice: #F5F1E5;
+  --ink: #1E1D1A;
+  --stone: #6F695C;
+  --seal: #A63A2B;
+
+  --rule: rgba(30, 29, 26, .22);
+  --rule-strong: rgba(30, 29, 26, .42);
+
+  --display: "Cormorant Garamond", "Times New Roman", Georgia, serif;
+  --body: "Newsreader", Georgia, "Times New Roman", serif;
+  --zh-head: "Noto Serif SC", "Songti SC", "STSong", serif;
+  --zh-body: "Songti SC", "Noto Serif SC", "STSong", serif;
+  --sans: "Figtree Variable", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+
+  --edge: clamp(1.25rem, 8.5vw, 11rem);
+  --rail: clamp(3rem, 6.5vw, 5.75rem);
+  --page: 78rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  margin: 0;
+  background: var(--rice);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+::selection { background: rgba(166, 58, 43, .16); }
+
+:focus-visible {
+  outline: 2px solid var(--seal);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 20;
+  background: var(--ink);
+  color: var(--rice);
+  padding: .7rem 1.1rem;
+  text-decoration: none;
+  font-size: .9375rem;
+}
+.skip:focus { top: 1rem; }
+
+/* ---------- page frame ---------- */
+.page { width: 100%; max-width: var(--page); margin-inline: auto; }
+
+.masthead { padding-inline: var(--edge); padding-top: clamp(1rem, 2vw, 1.5rem); }
+.hero,
+.band,
+.la-head,
+.la-wall,
+.site-foot { padding-inline: var(--edge); }
+
+.hero { padding-block: clamp(2.5rem, 6vw, 5.5rem) clamp(3.5rem, 8vw, 7rem); }
+.band { padding-block: clamp(3.25rem, 7vw, 6rem); }
+.la-head { padding-block: clamp(2rem, 4.5vw, 4rem) clamp(2rem, 4vw, 3.25rem); }
+.la-wall { padding-bottom: clamp(3rem, 6vw, 5rem); }
+.site-foot { padding-block: clamp(1.25rem, 2.4vw, 1.75rem) clamp(2rem, 3.5vw, 3rem); }
+
+/* ---------- type ---------- */
+h1, h2, h3, h4 { margin: 0; font-family: var(--display); font-weight: 400; }
+h1 { font-size: clamp(2.5rem, 4.8vw, 4.375rem); line-height: 1.02; letter-spacing: -.012em; }
+h2 { font-size: clamp(2rem, 3.4vw, 3rem); line-height: 1.06; letter-spacing: -.008em; }
+h3 { font-size: clamp(1.5rem, 2.2vw, 2rem); line-height: 1.1; }
+h4 { font-size: clamp(1.2rem, 1.6vw, 1.4rem); font-weight: 500; line-height: 1.15; }
+
+p { margin: 0; max-width: 62ch; text-wrap: pretty; }
+p + p { margin-top: 1em; }
+
+/* Chinese: second language, never micro-type, never an ornament */
+.zh {
+  display: block;
+  margin-top: .35em;
+  font-family: var(--zh-body);
+  font-size: .95em;
+  line-height: 1.8;
+  letter-spacing: .02em;
+  color: var(--stone);
+}
+h1 .zh, h2 .zh, h3 .zh, h4 .zh {
+  display: block;
+  margin-top: .32em;
+  font-family: var(--zh-head);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: .14em;
+}
+h2 .zh { font-size: .48em; }
+h3 .zh { font-size: .6em; letter-spacing: .12em; }
+h4 .zh { font-size: .68em; letter-spacing: .1em; }
+
+.ages .zh,
+.contact-label .zh,
+.place .zh,
+.foot-note .zh,
+.fee-table caption .zh,
+.pilot .zh {
+  display: inline;
+  margin: 0 0 0 .4em;
+  font-size: .95em;
+  letter-spacing: .03em;
+}
+
+.fee-table caption .zh { display: block; margin: .2em 0 0; letter-spacing: .03em; }
+
+:focus-visible { outline-color: var(--seal); }
+
+/* ---------- masthead ---------- */
+.masthead-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  flex-wrap: wrap;
+  padding-bottom: clamp(.9rem, 1.8vw, 1.3rem);
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .62rem;
+  text-decoration: none;
+  font-family: var(--display);
+  font-size: clamp(1.2rem, 1.55vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: .004em;
+  padding-block: .5rem;
+  margin-block: -.5rem;
+}
+.brand:hover .brand-name { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .28em; text-decoration-color: var(--seal); }
+
+.seal {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  background: var(--seal);
+  color: var(--rice);
+  font-family: var(--zh-head);
+  font-weight: 700;
+  font-size: .9rem;
+  line-height: 1;
+  transform: rotate(-3.5deg);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .1rem clamp(1rem, 2.5vw, 2.25rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.nav a {
+  display: block;
+  padding-block: .35rem;
+  text-decoration: none;
+  font-family: var(--body);
+  font-size: .9375rem;
+  line-height: 1.25;
+}
+.nav .zh {
+  display: block;
+  margin-top: .12rem;
+  font-family: var(--sans);
+  font-size: .75rem;
+  letter-spacing: .08em;
+  color: var(--stone);
+}
+.nav a:hover { color: var(--seal); }
+.nav a:hover .zh { color: var(--seal); }
+
+.head-rule { height: 1px; background: var(--rule); }
+@media (prefers-reduced-motion: no-preference) {
+  .head-rule {
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    animation: ink-rule .4s cubic-bezier(.22, .6, .2, 1) .08s forwards;
+  }
+}
+@keyframes ink-rule { to { transform: scaleX(1); } }
+
+/* ---------- hero ---------- */
+.hero-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(.75rem, 1.5vw, 1.5rem);
+  align-items: start;
+}
+.hero-copy { grid-column: 1 / span 7; }
+.hero h1 .line { display: block; }
+.hero h1 em { font-style: italic; }
+.hero-motto {
+  font-size: clamp(1rem, 1.4vw, 1.3rem) !important;
+  line-height: 1.5;
+  letter-spacing: .2em !important;
+  margin-top: clamp(1.1rem, 2.2vw, 1.75rem) !important;
+}
+.hero-lede {
+  margin-top: clamp(1.5rem, 2.8vw, 2.25rem);
+  max-width: 44ch;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+.hero-lede .zh { font-size: .94em; }
+.hero-ask { margin-top: clamp(1.25rem, 2.4vw, 1.75rem); }
+
+.textlink {
+  display: inline-block;
+  padding-bottom: .3rem;
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.35;
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-strong);
+}
+.textlink .zh {
+  display: block;
+  margin-top: .15rem;
+  font-family: var(--zh-body);
+  font-size: .82em;
+  line-height: 1.4;
+  letter-spacing: .02em;
+}
+.textlink:hover, .textlink:focus-visible { color: var(--seal); border-bottom-color: var(--seal); }
+.textlink:hover .zh, .textlink:focus-visible .zh { color: var(--seal); }
+
+.hero-figure {
+  grid-column: 9 / -1;
+  margin: clamp(2.5rem, 9vw, 7.5rem) calc(-1 * var(--edge)) 0 0;
+}
+.hero-figure img { width: 100%; }
+.hero-figure figcaption {
+  margin-top: clamp(.75rem, 1.4vw, 1rem);
+  max-width: 34ch;
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.02rem;
+  line-height: 1.45;
+  color: var(--stone);
+}
+.hero-figure figcaption .zh {
+  display: block;
+  margin-top: .3em;
+  font-family: var(--zh-body);
+  font-style: normal;
+  font-size: .88em;
+}
+
+/* ---------- chapters: one vertical mark in the margin ---------- */
+.chapter {
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  column-gap: clamp(1.25rem, 2.8vw, 2.75rem);
+  padding-top: clamp(2rem, 4vw, 3.25rem);
+  border-top: 1px solid var(--rule);
+}
+.mark {
+  position: sticky;
+  top: clamp(1.25rem, 4vw, 3rem);
+  align-self: start;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(.45rem, .9vw, .7rem);
+}
+.mark-char {
+  font-family: var(--zh-head);
+  font-weight: 700;
+  font-size: clamp(2.75rem, 5.5vw, 5rem);
+  line-height: 1;
+  color: rgba(30, 29, 26, .85);
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+.mark-aside {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  height: clamp(2.5rem, 4vw, 3.5rem);
+}
+.mark-rule { width: 1px; height: 100%; background: var(--rule); }
+.nowrap { white-space: nowrap; }
+
+.mark-word {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1;
+  letter-spacing: .1em;
+  color: var(--stone);
+}
+
+.chapter-body { min-width: 0; }
+.chapter-body h2 { max-width: 22ch; }
+.lede {
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+  max-width: 58ch;
+  font-size: 1.0625rem;
+  line-height: 1.68;
+}
+.lede .zh { font-size: .94em; }
+
+/* ---------- chapter one: plates of student work ---------- */
+.plates { margin-top: clamp(2rem, 4vw, 3.25rem); }
+.plate {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 7fr);
+  column-gap: clamp(1.25rem, 3.5vw, 3.5rem);
+  align-items: start;
+  padding-block: clamp(1.75rem, 3.2vw, 2.75rem);
+  border-top: 1px solid var(--rule);
+}
+.plate:first-child { border-top: 0; padding-top: 0; }
+.ages {
+  font-family: var(--body);
+  font-size: .875rem;
+  letter-spacing: .02em;
+  color: var(--stone);
+  font-variant-numeric: tabular-nums;
+}
+.ages .zh { margin-left: .35em; }
+.plate-label h3 { margin-top: .55rem; font-size: clamp(1.55rem, 2.1vw, 1.95rem); font-weight: 500; }
+.plate-note { margin-top: .7rem; max-width: 32ch; font-size: .9375rem; line-height: 1.55; }
+.plate-note .zh { font-size: .94em; }
+.plate-action { margin-top: 1.1rem; }
+.plate-status {
+  margin-top: 1.1rem;
+  max-width: 18ch;
+  font-size: .875rem;
+  line-height: 1.5;
+  color: var(--stone);
+}
+.plate-status .zh { font-size: .92em; }
+.plate-works {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: end;
+  justify-self: end;
+  gap: clamp(1rem, 2.4vw, 2rem);
+  width: 100%;
+  max-width: 38rem;
+}
+.plate-works figure { margin: 0; }
+.plate-works img { width: 100%; height: auto; }
+.plate--single .plate-works { grid-template-columns: minmax(0, 1fr); max-width: 28rem; }
+
+/* ---------- chapter two: the teacher ---------- */
+.founder {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  column-gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+}
+.portrait { margin: 0; max-width: 24rem; }
+.portrait img {
+  width: 100%;
+  padding: clamp(.35rem, .7vw, .65rem);
+  border: 1px solid var(--rule);
+}
+.letter { max-width: 60ch; }
+.letter-lede {
+  max-width: 44ch;
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 2.3vw, 1.9rem);
+  line-height: 1.18;
+}
+.letter-lede .zh {
+  margin-top: .55em;
+  font-family: var(--zh-body);
+  font-size: .53em;
+  line-height: 1.75;
+  letter-spacing: .04em;
+}
+.letter > p + p { margin-top: 1.15em; }
+.letter-role { margin-top: clamp(1.5rem, 3vw, 2.25rem); font-size: .9375rem; color: var(--stone); }
+.letter-role .zh { font-size: .94em; }
+.letter-motto {
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  max-width: 46ch;
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(1.15rem, 1.7vw, 1.4rem);
+  line-height: 1.3;
+}
+.letter-motto .zh {
+  margin-top: .4em;
+  font-family: var(--zh-body);
+  font-style: normal;
+  font-size: .72em;
+  letter-spacing: .05em;
+  color: var(--ink);
+}
+
+.abilities {
+  margin-top: clamp(3rem, 6vw, 5rem);
+  padding-top: clamp(1.75rem, 3vw, 2.5rem);
+  border-top: 1px solid var(--rule);
+}
+.ability-list {
+  display: grid;
+  gap: clamp(1.75rem, 3.5vw, 3rem);
+  margin: clamp(1.5rem, 3vw, 2.25rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.ability-list li {
+  max-width: 54ch;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+}
+.ability-list li:nth-child(2) { margin-left: clamp(0rem, 5vw, 4.5rem); }
+.ability-list li:nth-child(3) { margin-left: clamp(0rem, 10vw, 9rem); }
+.ability-list p { margin-top: .6rem; }
+
+/* ---------- chapter three: courses, projects, programmes ---------- */
+.table-wrap {
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+.table-wrap:focus-visible { outline: 2px solid var(--seal); outline-offset: 4px; }
+.table-wrap:focus-visible { outline: 2px solid var(--seal); outline-offset: 4px; }
+
+.fee-table {
+  width: 100%;
+  min-width: 42rem;
+  border-collapse: collapse;
+  font-size: .9375rem;
+  line-height: 1.55;
+}
+.fee-table thead th .zh {
+  display: block;
+  margin: .25em 0 0;
+  font-size: 1em;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+.fee-table caption {
+  caption-side: top;
+  padding-bottom: .9rem;
+  text-align: left;
+  font-size: .875rem;
+  letter-spacing: .01em;
+  color: var(--stone);
+}
+.fee-table thead th {
+  padding: .55rem .9rem;
+  border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: bottom;
+  font-family: var(--body);
+  font-weight: 400;
+  font-size: .875rem;
+  letter-spacing: .02em;
+  color: var(--stone);
+}
+.fee-table tbody th,
+.fee-table tbody td {
+  padding: 1.15rem .9rem;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+  font-weight: 400;
+}
+.fee-table tbody th { width: 15rem; }
+.course {
+  display: block;
+  font-family: var(--display);
+  font-size: 1.35rem;
+  line-height: 1.12;
+}
+.course .zh {
+  margin-top: .25em;
+  font-family: var(--zh-head);
+  font-weight: 700;
+  font-size: .62em;
+  letter-spacing: .1em;
+  color: var(--ink);
+}
+.year {
+  display: block;
+  margin-top: .45rem;
+  font-size: .8125rem;
+  letter-spacing: .02em;
+  color: var(--stone);
+}
+.fee-table td .zh { margin-top: .3em; font-size: .9em; }
+.fee {
+  font-family: var(--display);
+  font-size: 1.55rem;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.fee-term { font-weight: 500; }
+.fee-table tbody tr:last-child th,
+.fee-table tbody tr:last-child td { border-bottom: 1px solid var(--rule-strong); }
+
+.fineprint {
+  margin-top: 1.5rem;
+  max-width: 68ch;
+  font-size: .875rem;
+  line-height: 1.6;
+  color: var(--stone);
+}
+.fineprint .zh { font-size: .95em; }
+
+.reward {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding-top: clamp(1.5rem, 2.5vw, 2rem);
+  border-top: 1px solid var(--rule);
+  max-width: 48rem;
+}
+.reward h3 { font-size: 1.5rem; }
+.reward p { margin-top: .75rem; }
+.reward .fineprint { margin-top: .75rem; }
+
+.sub {
+  margin-top: clamp(3rem, 5.5vw, 4.75rem);
+  padding-top: clamp(1.75rem, 3vw, 2.5rem);
+  border-top: 1px solid var(--rule);
+}
+.sub h3 { max-width: 26ch; }
+
+.projects {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  column-gap: clamp(1.75rem, 4.5vw, 4rem);
+  align-items: start;
+}
+.comic { margin: 0; max-width: 22rem; }
+.comic img { width: 100%; }
+.comic figcaption {
+  margin-top: .9rem;
+  max-width: 24ch;
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--stone);
+}
+.comic figcaption .zh {
+  display: block;
+  margin-top: .25em;
+  font-family: var(--zh-body);
+  font-style: normal;
+  font-size: .88em;
+}
+.projects p { margin-top: 1rem; }
+.project-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 clamp(1.5rem, 4vw, 3rem);
+  margin: clamp(1.5rem, 3vw, 2rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.project-list li {
+  padding-block: .85rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--display);
+  font-size: clamp(1.15rem, 1.5vw, 1.35rem);
+  line-height: 1.15;
+}
+.project-list .zh {
+  margin-top: .45em;
+  font-family: var(--zh-head);
+  font-weight: 700;
+  font-size: .62em;
+  letter-spacing: .1em;
+  color: var(--ink);
+}
+
+.beyond-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 4.5vw, 4rem);
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+.entry p { margin-top: .75rem; font-size: 1rem; }
+.pilot {
+  margin-bottom: .6rem;
+  font-size: .8125rem;
+  letter-spacing: .03em;
+  color: var(--stone);
+}
+.workshop-list { margin: 1.1rem 0 0; padding: 0; list-style: none; }
+.workshop-list li {
+  padding-block: .45rem;
+  border-top: 1px solid var(--rule);
+  font-size: .95rem;
+  line-height: 1.5;
+}
+.workshop-list li:last-child { border-bottom: 1px solid var(--rule); }
+.workshop-list .zh { display: inline; margin-left: .4em; font-size: .94em; }
+
+/* ---------- contact ---------- */
+.contact {
+  padding-top: clamp(2rem, 4vw, 3.25rem);
+  border-top: 1px solid var(--rule);
+}
+.contact h2 {
+  max-width: 10ch;
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+}
+.contact h2 .zh { margin-top: .5em; font-size: .3em; line-height: 1.6; letter-spacing: .18em; }
+.seal--contact {
+  width: 32px;
+  height: 32px;
+  margin-left: .6em;
+  font-size: 1rem;
+  transform: rotate(3.5deg) translateY(.16em);
+}
+.contact-body {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+  margin-top: clamp(2rem, 3.5vw, 3rem);
+}
+.contact-lede { max-width: 46ch; font-size: 1.0625rem; }
+.contact-label { font-size: .8125rem; letter-spacing: .03em; color: var(--stone); }
+.email {
+  display: inline-block;
+  margin-top: .15rem;
+  padding: .62rem 0 .52rem;
+  font-family: var(--display);
+  font-size: clamp(1.3rem, 2.1vw, 1.8rem);
+  line-height: 1.2;
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-strong);
+  word-break: break-word;
+}
+.email:hover, .email:focus-visible { color: var(--seal); border-bottom-color: var(--seal); }
+.place { margin-top: 1.25rem; font-size: .9375rem; }
+.place .zh { display: inline; margin-left: .4em; font-size: .95em; }
+
+/* ---------- footer ---------- */
+.foot {
+  display: flex;
+  justify-content: space-between;
+  gap: .5rem 2rem;
+  flex-wrap: wrap;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  font-size: .8125rem;
+  color: var(--stone);
+}
+.foot-note .zh { display: inline; margin-left: .5em; font-size: .95em; }
+
+/* ---------- Little Artists ---------- */
+.la-head-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: end;
+}
+.la-title h1 {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1rem, 2vw, 1.75rem);
+  flex-wrap: wrap;
+  font-size: clamp(2.75rem, 6vw, 5rem);
+  line-height: .98;
+}
+.la-v {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  margin-top: .16em;
+  font-family: var(--zh-head);
+  font-weight: 700;
+  font-size: .46em;
+  line-height: 1.05;
+  letter-spacing: .18em;
+  color: var(--ink);
+}
+.la-title .ages {
+  margin-top: clamp(1rem, 2vw, 1.4rem);
+  font-family: var(--display);
+  font-size: 1.3rem;
+  color: var(--stone);
+  letter-spacing: .02em;
+}
+.la-title .ages .zh { display: inline; margin-left: .45em; font-size: .82em; }
+.la-note p + p { margin-top: 1em; }
+.la-count { font-size: .9375rem; color: var(--stone); }
+.la-count .zh { font-size: .95em; }
+.la-note .textlink { margin-top: 1.25rem; }
+
+.artists { margin: 0; padding: 0; list-style: none; }
+.artist {
+  display: grid;
+  grid-template-columns: minmax(9rem, 3fr) minmax(0, 9fr);
+  column-gap: clamp(1.5rem, 3.2vw, 3rem);
+  align-items: start;
+  padding-block: clamp(1.75rem, 3vw, 2.75rem);
+  border-top: 1px solid var(--rule);
+}
+.artist:first-child { border-top: 1px solid var(--rule-strong); }
+.artist-name {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin-top: .1rem;
+  font-size: clamp(2rem, 2.7vw, 2.6rem);
+  font-weight: 500;
+  line-height: 1.05;
+}
+.artist-name .age {
+  font-family: var(--display);
+  font-size: .56em;
+  font-weight: 400;
+  letter-spacing: .01em;
+  color: var(--stone);
+  font-variant-numeric: tabular-nums;
+}
+.pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(.75rem, 1.8vw, 1.75rem);
+  align-items: end;
+  justify-self: end;
+  width: 100%;
+  max-width: 42rem;
+}
+.work {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+.work img { width: 100%; }
+.work:focus-visible { outline: 2px solid var(--seal); outline-offset: 4px; }
+
+.la-next {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  gap: clamp(2rem, 4.5vw, 4rem);
+  align-items: start;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding-top: clamp(2rem, 3.5vw, 3rem);
+  border-top: 1px solid var(--rule-strong);
+}
+.la-next h2 { max-width: 20ch; font-size: clamp(1.9rem, 3vw, 2.6rem); }
+.la-next p { margin-top: 1rem; max-width: 52ch; }
+.la-next-links { display: grid; justify-items: start; gap: 1.5rem; }
+.la-next-links .email { margin-top: 0; }
+
+/* ---------- artwork viewer: a scroll opened on rice paper ---------- */
+dialog.viewer {
+  width: min(94vw, 70rem);
+  max-width: 94vw;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+}
+dialog.viewer::backdrop { background: rgba(30, 29, 26, .8); }
+body:has(dialog.viewer[open]) { overflow: hidden; }
+.viewer-sheet {
+  display: grid;
+  gap: clamp(.85rem, 1.8vw, 1.25rem);
+  padding: clamp(.9rem, 2.2vw, 1.75rem);
+  border: 1px solid rgba(30, 29, 26, .35);
+  background: var(--rice);
+}
+.viewer-frame { display: grid; justify-items: center; margin: 0; }
+.viewer-img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 68vh;
+}
+.viewer-bar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: .9rem;
+  border-top: 1px solid var(--rule);
+}
+.viewer-cap { max-width: 28ch; font-family: var(--display); font-size: clamp(1.15rem, 1.8vw, 1.4rem); line-height: 1.15; }
+.viewer-cap .age { margin-left: .45em; font-family: var(--body); font-size: .75em; color: var(--stone); }
+.viewer-cap small { display: block; margin-top: .25rem; font-family: var(--body); font-size: .8rem; color: var(--stone); }
+.viewer-ctrl { display: flex; flex-wrap: wrap; gap: .45rem; }
+.viewer-ctrl button {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  min-height: 44px;
+  padding: .5rem .85rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: .875rem;
+  line-height: 1.2;
+  cursor: pointer;
+}
+.viewer-ctrl .arr { font-family: var(--display); font-size: 1.3rem; line-height: 1; color: var(--seal); }
+.viewer-ctrl button .zh { display: inline; margin: 0; font-family: var(--zh-body); font-size: .95em; color: inherit; }
+.viewer-ctrl button:hover { color: var(--seal); border-color: var(--seal); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 960px) {
+  .hero-grid { display: block; }
+  .hero-copy { max-width: 38rem; }
+  .hero-figure { width: min(100%, 26rem); margin: clamp(2.5rem, 7vw, 3.5rem) 0 0 auto; }
+}
+
+@media (max-width: 900px) {
+  .chapter { display: block; }
+  .mark {
+    position: static;
+    flex-direction: row;
+    justify-content: flex-start;
+    justify-self: start;
+    align-items: center;
+    gap: .65rem;
+    margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
+  }
+  .mark-num { display: none; }
+  .mark-char { writing-mode: horizontal-tb; font-size: 2.2rem; color: var(--ink); }
+  .mark-aside { height: auto; flex-direction: row; gap: .65rem; }
+  .mark-rule { width: clamp(1.5rem, 5vw, 3rem); height: 1px; }
+  .mark-word { writing-mode: horizontal-tb; transform: none; font-size: .9375rem; }
+  .chapter-body h2 { max-width: none; }
+  .founder { display: block; }
+  .portrait { max-width: 18rem; margin-bottom: 2rem; }
+  .projects { display: block; }
+  .comic { max-width: 16rem; margin-bottom: 2rem; }
+  .beyond-grid { grid-template-columns: 1fr; }
+  .contact-body { grid-template-columns: 1fr; }
+  .la-head-inner { display: block; }
+  .la-note { max-width: 40rem; margin-top: 2rem; }
+  .la-next { display: block; }
+  .la-next-links { margin-top: 1.75rem; }
+  .ability-list li:nth-child(2),
+  .ability-list li:nth-child(3) { margin-left: 0; }
+}
+
+@media (max-width: 820px) {
+  .table-wrap { overflow: visible; }
+  .fee-table { display: block; min-width: 0; }
+  .fee-table caption { display: block; }
+  .fee-table thead { display: none; }
+  .fee-table tbody { display: block; }
+  .fee-table tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "course course"
+      "age age"
+      "skills skills"
+      "lesson term";
+    gap: .4rem 1rem;
+    padding-block: clamp(1.15rem, 3vw, 1.6rem);
+    border-top: 1px solid var(--rule);
+  }
+  .fee-table tbody tr:first-child { border-top: 1px solid var(--rule-strong); }
+  .fee-table tbody th,
+  .fee-table tbody td {
+    display: block;
+    width: auto;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+  }
+  .fee-table tbody th { grid-area: course; }
+  .fee-table tbody td:nth-of-type(1) { grid-area: age; margin-top: .15rem; font-size: .875rem; color: var(--stone); }
+  .fee-table tbody td:nth-of-type(2) { grid-area: skills; margin-top: .2rem; max-width: 44ch; font-size: .9375rem; }
+  .fee-table tbody td:nth-of-type(3) { grid-area: lesson; margin-top: .55rem; }
+  .fee-table tbody td:nth-of-type(4) { grid-area: term; margin-top: .55rem; }
+  .fee-table td.fee::before {
+    content: "Per lesson 每节课";
+    display: block;
+    margin-bottom: .1rem;
+    font-family: var(--body);
+    font-size: .75rem;
+    letter-spacing: .03em;
+    color: var(--stone);
+  }
+  .fee-table td.fee-term::before { content: "Per term 每学期"; }
+}
+
+@media (max-width: 760px) {
+  .project-list { grid-template-columns: 1fr; }
+  .plate { grid-template-columns: 1fr; gap: 1.5rem; }
+  .plate--single .plate-works { max-width: min(100%, 20rem); }
+  .plate-works--pair { max-width: none; }
+  .artist { grid-template-columns: 1fr; gap: 1rem; }
+  .artist-name { font-size: 1.5rem; }
+  .la-title h1 { display: block; font-size: clamp(2.5rem, 9vw, 3.6rem); }
+  .la-v {
+    writing-mode: horizontal-tb;
+    display: block;
+    margin-top: .45rem;
+    font-size: .34em;
+    letter-spacing: .14em;
+  }
+}
+
+@media (max-width: 560px) {
+  body { font-size: 17px; }
+  .masthead-inner > nav { flex: 1 1 100%; }
+  .nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .35rem 1.5rem;
+    width: 100%;
+  }
+  .nav a { padding-block: .2rem; font-size: .875rem; }
+  .hero-lede { max-width: none; }
+  .chapter-body h2 { max-width: none; }
+  .contact h2 { max-width: none; }
+  .viewer-bar { display: block; }
+  .viewer-ctrl { margin-top: .9rem; }
+  .viewer-ctrl button { flex: 1 1 auto; justify-content: center; }
+  .fee-table { font-size: .9375rem; }
+  .fee-table tbody th { width: auto; }
+  .course { font-size: 1.2rem; }
+  .fee { font-size: 1.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .head-rule { transform: none; animation: none; }
+}

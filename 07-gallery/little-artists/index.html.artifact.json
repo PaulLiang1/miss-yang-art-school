@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "kind": "html",
+  "title": "version-7/little-artists/index.html",
+  "entry": "version-7/little-artists/index.html",
+  "renderer": "html",
+  "status": "complete",
+  "exports": [
+    "html",
+    "pdf",
+    "zip"
+  ],
+  "createdAt": "2026-11-17T13:29:13.347Z",
+  "updatedAt": "2026-11-17T13:29:13.347Z",
+  "metadata": {
+    "inferred": true,
+    "reconciled": true
+  }
+}
